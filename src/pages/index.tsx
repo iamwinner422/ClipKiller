@@ -14,7 +14,6 @@ export default function IndexPage() {
         <DefaultLayout>
             <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
                 <div className="inline-block max-w-lg text-center justify-center">
-                    
                     <span className={title({ color: "violet", size: 'lg' })}>Auto Clip&nbsp;</span>
                     <br />
                     <div className={subtitle({ class: "mt-4" })}>
@@ -23,12 +22,14 @@ export default function IndexPage() {
                 </div>
 
                 <div className="mt-8">
-                    <div className="flex gap-x-3 items-center">
+                    <div className="flex flex-wrap gap-x-3 items-center justify-center gap-y-2">
+                        <div className="w-full sm:w-[450px]">
                         <Input type="text" placeholder="Paste your Youtube video link..."
-                            startContent={<LinkIcon />} radius="full"
+                            startContent={<LinkIcon />} radius="full" className="w-full"
                             variant="bordered" size="lg" isClearable={true}
                         />
-                        <button className="flex gap-x-2 items-center px-4 shadow bg-[#b249f8] font-semibold text-white py-3 rounded-full">
+                        </div>
+                        <button className="w-full flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] font-medium text-white py-3 rounded-full">
                             Generate
                             <Sparkles size={18} className="font-semibold"/>
                         </button>
