@@ -1,13 +1,9 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+
 import {Input} from "@heroui/input";
 import { title, subtitle } from "@/components/primitives";
-import { LinkIcon, SearchIcon } from "@/components/icons";
+import { LinkIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
-import {Button} from "@heroui/button";
-import { Sparkles, WandSparklesIcon } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function IndexPage() {
     return (
@@ -23,13 +19,13 @@ export default function IndexPage() {
 
                 <div className="mt-8">
                     <div className="flex flex-wrap gap-x-3 items-center justify-center gap-y-2">
-                        <div className="w-full sm:w-[450px]">
+                        <div className="w-full sm:w-[25rem]">
                         <Input type="text" placeholder="Paste your Youtube video link..."
                             startContent={<LinkIcon />} radius="full" className="w-full"
                             variant="bordered" size="lg" isClearable={true}
                         />
                         </div>
-                        <button className="w-full flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] font-medium text-white py-3 rounded-full">
+                        <button className="w-full sm:w-auto flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] hover:bg-[#b249f8]/90 font-medium text-white py-3 rounded-full">
                             Generate
                             <Sparkles size={18} className="font-semibold"/>
                         </button>
