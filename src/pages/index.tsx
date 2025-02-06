@@ -38,7 +38,7 @@ export default function IndexPage() {
                             <Input type="text" placeholder="Paste your Youtube video link..."
                                 startContent={<LinkIcon />} radius="full" className="w-full" value={ytLink}
                                 onChange={(e) => setYtLink(e.target.value)}
-                                variant="bordered" size="lg" isClearable={true}
+                                variant="bordered" size="lg" isClearable={true} onClear={() => setYtLink("")}
                             />
                         </div>
                         <button type="button" onClick={handleGenerate} className="w-full sm:w-auto flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] hover:bg-[#b249f8]/90 font-medium text-white py-3 rounded-full">
