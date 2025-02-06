@@ -8,7 +8,7 @@ import { Sparkles } from 'lucide-react';
 export default function IndexPage() {
     return (
         <DefaultLayout>
-            <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+            <section className="h-full flex flex-col items-center justify-center">
                 <div className="inline-block max-w-lg text-center justify-center">
                     <span className={title({ color: "violet", size: 'lg' })}>Auto Clip&nbsp;</span>
                     <br />
