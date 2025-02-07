@@ -1,5 +1,5 @@
 import { analysisResult, videoInfo } from "@/types";
-import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 
 
