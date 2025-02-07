@@ -110,7 +110,7 @@ export default function IndexPage() {
 
         
             <section id="video-informations" className={`snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
-                <VideoInformations loading={loading}/>
+                <VideoInformations loading={loading} error={error} />
             </section>
         </DefaultLayout>
     );
