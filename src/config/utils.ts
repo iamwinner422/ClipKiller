@@ -84,14 +84,13 @@ export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: 
     try {
         const result = await geminiModel.generateContent(prompt);
         const response = await result.response;
-        const jsonResult = JSON.parse(response.text()) as analysisResult[];
-        setResult(jsonResult);
-        console.log(jsonResult);
+        //const jsonResult = JSON.parse(response.text()) as analysisResult[];
+        //setResult(jsonResult);
+        //console.log("json",jsonResult);
+        console.log("res",response);
     } catch (error: any) {
         console.error('Error:', error);
         setError(error.message);
-        return null;
-
     }finally {
         setLoading(false);
     }
