@@ -43,6 +43,21 @@ export default function IndexPage() {
         }
     };
 
+    const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void) => {
+        try {
+            const response = await fetch(
+                `https://noembed.com/embed?url=${ytLink}`
+            );
+            const data = await response.json();
+            return data;
+        } catch (error: any) {
+            setError(error.message);
+        }finally{
+            setLoading(false);
+        }
+
+    };
+
     return (
         <DefaultLayout>
 
