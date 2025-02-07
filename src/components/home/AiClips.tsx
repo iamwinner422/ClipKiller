@@ -1,9 +1,9 @@
 import { analysisResult } from "@/types";
 import { Progress } from "@heroui/progress";
 import { Button } from "@heroui/button";
-import { Card, CardFooter } from "@heroui/Card";
+import { Card, CardFooter, CardHeader } from "@heroui/Card";
 import { Image } from "@heroui/image";
-
+import {Clock}from "lucide-react";
 
 
 
@@ -42,7 +42,10 @@ export default function AiClips({loading, error, clips, thumbnail}: Props) {
             <div className="flex flex-wrap gap-5">
                 {clips.map((clip: analysisResult, index: number)=> {
                     return(
-                        <Card shadow="sm" isBlurred={true} key={index} >
+                        <Card shadow="sm" isBlurred={true} key={index}>
+                            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+                                <h4 className="font-medium text-large truncate w-full">{clip.title}</h4>
+                            </CardHeader>
                             <Image isBlurred={true}
                                 alt={clip.title}
                                 src={thumbnail}
@@ -50,11 +53,23 @@ export default function AiClips({loading, error, clips, thumbnail}: Props) {
                                 width="100%"
                             />
                             <CardFooter className="text-small block">
-                                
+                                <div className="flex items-center justify-between">
+                                    <p className="text-sm font-medium">{clip.start}</p>                                    
+                                    <div className="flex items-center gap-x-2">
+                                        <Clock size={18}/>
+                                        <p className="text-sm font-medium">{clip.duration}sec</p>
+                                    </div>                                    
+                                </div>
+                                <Button color="secondary">Download</Button>
                             </CardFooter>
                         </Card>
                     )
                 })}
+            </div>
+        )}
+        {!loading && error && (
+            <div className="flex items-center justify-center">
+                <p className="text-red-500">{error}</p>
             </div>
         )}
     </div>
