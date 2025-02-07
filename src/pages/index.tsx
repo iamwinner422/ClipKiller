@@ -1,5 +1,5 @@
 import { Input } from "@heroui/input";
-import { Card } from "@heroui/Card";
+import { Card } from "@heroui/card";
 import { Progress } from "@heroui/progress";
 import { title, subtitle } from "@/components/primitives";
 import { LinkIcon } from "@/components/icons";

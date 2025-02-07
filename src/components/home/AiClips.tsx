@@ -1,7 +1,7 @@
 import { analysisResult } from "@/types";
 import { Progress } from "@heroui/progress";
 import { Button } from "@heroui/button";
-import { Card, CardFooter, CardHeader } from "@heroui/Card";
+import { Card, CardFooter, CardHeader } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { Clock } from "lucide-react";
 

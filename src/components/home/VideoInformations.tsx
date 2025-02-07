@@ -1,7 +1,7 @@
 
 import { Image } from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
-import { Card, CardFooter } from "@heroui/Card";
+import { Card, CardFooter } from "@heroui/card";
 import { videoInfo } from "@/types";
 import { parseVideoDuration } from "@/config/utils";
 import {Clock, Youtube}from "lucide-react";
