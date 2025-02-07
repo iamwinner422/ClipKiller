@@ -73,18 +73,25 @@ export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: 
 
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const geminiModel = genAI.getGenerativeModel({model: 'gemini-2.0-flash-exp'});
-    
+    const generationConfig = {
+        temperature: 1,
+        topP: 0.95,
+        topK: 40,
+        maxOutputTokens: 8192,
+        responseMimeType: "text/json",
+      };
 
     try {
-        //const result = await geminiModel.generateContent(prompt);
-        //const response = await result.response;
-        //if(response.text().length === 0){
-        //    setError('Oops! Cannot processing this video at this time.')
-        //}
+        const chatSession = geminiModel.startChat({generationConfig});
+        const result = await chatSession.sendMessage(prompt);
+        const response =  result.response;
+        if(response.text().length === 0){
+            setError('Oops! Cannot processing this video at this time.')
+        }
         //const jsonResult = JSON.parse(response.text()) as analysisResult[];
         //setResult(jsonResult);
         //console.log("json",jsonResult);
-        //console.log("res",response);
+        console.log("res",response);
     } catch (error: any) {
         console.error('Error:', error);
         setError("Something went wrong! Try again.");

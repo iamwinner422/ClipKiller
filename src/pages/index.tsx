@@ -44,6 +44,7 @@ export default function IndexPage() {
         }
     }, [showVideoInfo]);
 
+
     const handleGenerate = () => {
         setShowVideoInfo(false);
         if (ytLink === "") {
@@ -56,16 +57,19 @@ export default function IndexPage() {
             setLoading(true);
             setTimeout(() => {
                 setShowVideoInfo(true);
-                //setLoading(false);
                 navigate("/#video-informations", { replace: true });
-                setGLoading(true);
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
-                analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
+                
             }, 3000);
         }
     };
 
-    
+    useEffect(() => {
+        if (videoInfo) {
+            setGLoading(true);
+            analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
+        }
+    }, [videoInfo]);
 
     return (
         <DefaultLayout>
