@@ -1,7 +1,7 @@
 import { videoInfo } from "@/types";
 
 const API_HOST = import.meta.env.VITE_API_HOST
-const
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
 
 
@@ -83,7 +83,7 @@ async function analyzeYouTubeVideo(ytLink: string) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-goog-api-key': apiKey,
+                'x-goog-api-key': GEMINI_API_KEY,
             },
             body: JSON.stringify(payload),
         });
