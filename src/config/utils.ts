@@ -1,4 +1,7 @@
-import { videoInfo } from "@/types";
+import { analysisResult, videoInfo } from "@/types";
+import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai"
+
+
 
 const API_HOST = import.meta.env.VITE_API_HOST
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
@@ -47,10 +50,8 @@ export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading:
 };
 
 
-async function analyzeYouTubeVideo(ytLink: string) {
-    const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-
-    const prompt = `Analyze the YouTube video "${ytLink}" and identify the key moments. Extract timestamps (start and end) with a maximum duration of 1 minute and 20 seconds per moment.
+async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setResult: (result: analysisResult) => void) {
+    const prompt = `Analyze the YouTube video "${ytLink}" and identify the key moments. Extract timestamps (start and duration in seconds) with a maximum duration of 1 minute and 20 seconds per moment.
     Extract at least 3 and at most 6 key moments, depending on the length of the video.
     Each moment should have a descriptive and engaging title that accurately summarizes its content. 
     The title must be in the same language as the video.
@@ -59,61 +60,39 @@ async function analyzeYouTubeVideo(ytLink: string) {
     [
         {
             start: "0.34",
-            end: "1.00",
+            duration: "75" // in seconds,
             title: "Le secret d'une pâte à pizza parfaite révélé !"
         },
         {
             start: "1.00",
-            end: "1.24",
+            duration: "55", // in seconds
             title: "Les étapes clés pour une pâte maison réussie"
         }
     ]`;
 
-    const payload = {
-        "contents": [{
-            "parts": [{
-                "text": prompt
-            }]
-        }],
-    };
 
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const safetySettings = [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+        },
+    ];
+    const geminiModel = genAI.getGenerativeModel({model: 'gemini-2.0-flash-exp', safetySettings: safetySettings});
+    
 
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-goog-api-key': GEMINI_API_KEY,
-            },
-            body: JSON.stringify(payload),
-        });
-
-
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        if (data.candidates && data.candidates.length > 0 && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts.length > 0) {
-            const generatedText = data.candidates[0].content.parts[0].text;
-
-            try {
-                const jsonTimestamps = JSON.parse(generatedText);
-                return jsonTimestamps;
-            } catch (error) {
-                console.error('Erreur lors du parsing du JSON:', error, generatedText);
-                return null;
-            }
-        }
-        else {
-            console.error('Réponse de l\'API inattendue', data)
-            return null;
-        }
-
-
-    } catch (error) {
-        console.error('Erreur lors de la requête à l\'API Gemini:', error);
+        const result = await geminiModel.generateContent(prompt);
+        const response = await result.response;
+        const jsonResult = JSON.parse(response.text()) as analysisResult;
+        setResult(jsonResult);
+        console.log(jsonResult);
+    } catch (error: any) {
+        console.error('Error:', error);
+        setError(error.message);
         return null;
+
+    }finally {
+        setLoading(false);
     }
 }

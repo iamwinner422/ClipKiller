@@ -11,3 +11,9 @@ export type videoInfo = {
     thumbnail: string;
     channel: string;
 }
+
+export type analysisResult = {
+    start: string;
+    title: string;
+    duration: number;
+}

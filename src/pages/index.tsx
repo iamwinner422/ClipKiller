@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
 import { useNavigate } from "react-router-dom";
 import VideoInformations from "@/components/home/VideoInformations";
-import { videoInfo } from "@/types";
+import { analysisResult, videoInfo } from "@/types";
 
 export default function IndexPage() {
     const [ytLink, setYtLink] = useState<string>("");
@@ -17,6 +17,7 @@ export default function IndexPage() {
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const [gLoading, setGLoading] = useState<boolean>(false);
     const [gError, setGError] = useState<string | undefined>(undefined);
+    const [aiResult, setAIResult] = useState<analysisResult[]>([]);
     const navigate = useNavigate();
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
 
