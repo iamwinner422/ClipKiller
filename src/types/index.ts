@@ -9,6 +9,4 @@ export type videoInfo = {
     title: string;
     duration: string;
     thumbnail: string;
-    channel: string;
-
 }

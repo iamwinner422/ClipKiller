@@ -5,9 +5,10 @@ import { LinkIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import { Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
-import { ytLinkRegex } from "@/config/utils";
+import { fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
 import { useNavigate } from "react-router-dom";
 import VideoInformations from "@/components/home/VideoInformations";
+import { videoInfo } from "@/types";
 
 export default function IndexPage() {
     const [ytLink, setYtLink] = useState<string>("");
@@ -15,6 +16,7 @@ export default function IndexPage() {
     const [loading, setLoading] = useState<boolean>(false);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
 
     // Lorsqu'on affiche les informations vidéo, on effectue le scroll
     useEffect(() => {
@@ -39,24 +41,13 @@ export default function IndexPage() {
                 setShowVideoInfo(true);
                 //setLoading(false);
                 navigate("/#video-informations", { replace: true });
+
+                fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
             }, 3000);
         }
     };
 
-    const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void) => {
-        try {
-            const response = await fetch(
-                `https://noembed.com/embed?url=${ytLink}`
-            );
-            const data = await response.json();
-            return data;
-        } catch (error: any) {
-            setError(error.message);
-        }finally{
-            setLoading(false);
-        }
-
-    };
+    
 
     return (
         <DefaultLayout>

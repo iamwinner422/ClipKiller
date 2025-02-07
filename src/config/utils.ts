@@ -1,3 +1,8 @@
+import { videoInfo } from "@/types";
+
+const API_HOST = import.meta.env.VITE_API_HOST
+
+
 export const ytLinkRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
 
 export function parseVideoDuration(duration: string): string {
@@ -21,3 +26,20 @@ export function parseVideoDuration(duration: string): string {
         return `0:${duration.padStart(2, "0")}`;
     }
 }
+
+
+export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setVideoInfo: (videoInfo: videoInfo) => void) => {
+    try {
+        const response = await fetch(
+            `${API_HOST}/video-info?/videoURL=${ytLink}`
+        );
+        const data: videoInfo = await response.json();
+        setVideoInfo(data);
+
+    } catch (error: any) {
+        setError(error.message);
+    }finally{
+        setLoading(false);
+    }
+
+};
