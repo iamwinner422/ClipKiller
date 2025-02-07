@@ -48,7 +48,9 @@ export default function IndexPage() {
                 navigate("/#video-informations", { replace: true });
 
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
-                //analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
+                setTimeout(()=>{
+                    analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
+                }, 5000)
             }, 3000);
         }
     };
