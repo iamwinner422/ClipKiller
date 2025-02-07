@@ -60,12 +60,12 @@ export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: 
     [
         {
             start: "0.34",
-            duration: "75" // in seconds,
+            duration: 75, // in seconds
             title: "Le secret d'une pâte à pizza parfaite révélé !"
         },
         {
             start: "1.00",
-            duration: "55", // in seconds
+            duration: 55, // in seconds
             title: "Les étapes clés pour une pâte maison réussie"
         }
     ]`;
@@ -89,6 +89,6 @@ export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: 
         console.error('Error:', error);
         setError("Something went wrong! Try again.");
     }finally {
-        //setLoading(false);
+        setLoading(false);
     }
 }
