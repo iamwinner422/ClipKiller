@@ -18,9 +18,9 @@ interface Props {
 
 export default function AiClips({ loading, error, clips, thumbnail }: Props) {
     return (
-        <div className="mt-12 flex flex-col justify-center items-center">
+        <div className="px-5">
             {loading && (
-                <div className="flex flex-col items-center">
+                <div className="mt-12 flex flex-col items-center justify-center">
                     <p>Processing, Finding best clips for you...</p>
                     <Progress
                         isIndeterminate
@@ -32,7 +32,7 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
                 </div>
             )}
             {(!loading && clips.length === 0) && (
-                <div className="flex flex-col gap-y-6 items-center">
+                <div className="mt-12 flex flex-col gap-y-6 items-center justify-center">
                     <p>Humm... Cannot find any suitable clip for the moment! Please retry.</p>
                     <Button variant="ghost" color="secondary" radius="full" className="w-24">
                         Retry
@@ -40,10 +40,10 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
                 </div>
             )}
             {!loading && clips.length > 0 && (
-                <div className="flex flex-wrap gap-5 mb-5">
+                <div className="flex flex-wrap justify-start gap-5 mb-5">
                     {clips.map((clip: analysisResult, index: number) => {
                         return (
-                            <Card shadow="sm" className="w-[250px]" isBlurred={true} key={index}>
+                            <Card shadow="sm" className="w-[245px]" isBlurred={true} key={index}>
                                 <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                                     <h4 className="font-medium text-large truncate w-full">{clip.title}</h4>
                                 </CardHeader>
