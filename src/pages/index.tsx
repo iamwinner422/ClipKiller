@@ -1,4 +1,5 @@
 import { Input } from "@heroui/input";
+import { Card } from "@heroui/Card";
 import { Progress } from "@heroui/progress";
 import { title, subtitle } from "@/components/primitives";
 import { LinkIcon } from "@/components/icons";
@@ -133,8 +134,10 @@ export default function IndexPage() {
 
         
             <section id="video-informations" className={`p-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
-                <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
-                <AiClips loading={gLoading} error={gError} clips={aiResult} thumbnail={videoInfo?.thumbnail}/>
+                <Card radius="lg">
+                    <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
+                    <AiClips loading={gLoading} error={gError} clips={aiResult} thumbnail={videoInfo?.thumbnail}/>
+                </Card>
             </section>
         </DefaultLayout>
     );

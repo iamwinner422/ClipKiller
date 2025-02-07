@@ -16,7 +16,7 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
         <div>
 
             <div className="flex flex-col gap-3">
-                <Card className="w-full h-full size-full py-8 px-6" radius="lg">
+                <div className="w-full h-full size-full py-8 px-6">
                     {loading && (
                         <div className=" w-full flex items-start gap-4">
                             <div>
@@ -59,7 +59,7 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
                             <p className="text-red-500">{error}</p>
                         </div>
                     )}
-                </Card>
+                </div>
             </div>
         </div>
     )

@@ -18,7 +18,7 @@ interface Props {
 
 export default function AiClips({ loading, error, clips, thumbnail }: Props) {
     return (
-        <div className="mt-16 flex flex-col justify-center items-center">
+        <div className="mt-12 flex flex-col justify-center items-center">
             {loading && (
                 <div className="flex flex-col items-center">
                     <p>Processing, Finding best clips for you...</p>
@@ -40,28 +40,29 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
                 </div>
             )}
             {!loading && clips.length > 0 && (
-                <div className="flex flex-wrap gap-5">
+                <div className="flex flex-wrap gap-5 mb-5">
                     {clips.map((clip: analysisResult, index: number) => {
                         return (
-                            <Card shadow="sm" isBlurred={true} key={index}>
+                            <Card shadow="sm" className="w-[250px]" isBlurred={true} key={index}>
                                 <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                                     <h4 className="font-medium text-large truncate w-full">{clip.title}</h4>
                                 </CardHeader>
                                 <Image isBlurred={true}
                                     alt={clip.title}
                                     src={thumbnail}
-                                    className="w-full object-cover h-[140px]"
+                                    className="w-full object-cover h-[170px]"
                                     width="100%"
                                 />
-                                <CardFooter className="text-small block">
-                                    <div className="flex items-center justify-between">
+                                <CardFooter className="text-small flex flex-col gap-y-3 w-full">
+                                    <p className="w-full ">{clip.title}</p>
+                                    <div className="flex items-center justify-between w-full">
                                         <p className="text-sm font-medium">{clip.start}</p>
-                                        <div className="flex items-center gap-x-2">
-                                            <Clock size={18} />
+                                        <div className="flex items-center gap-x-1">
+                                            <Clock size={15} />
                                             <p className="text-sm font-medium">{clip.duration}sec</p>
                                         </div>
                                     </div>
-                                    <Button color="secondary">Download</Button>
+                                    <Button color="secondary" className="w-full">Download</Button>
                                 </CardFooter>
                             </Card>
                         )
