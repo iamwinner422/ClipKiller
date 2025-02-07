@@ -5,7 +5,6 @@ import clsx from "clsx";
 
 import { useTheme } from "@/hooks/use-theme";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
-import { button } from "@heroui/theme";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -75,13 +74,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         })}
       >
         {isSelected ? (
-            <button type="button">
-                <MoonFilledIcon size={22} />
-            </button>
+          <MoonFilledIcon size={22} />
         ) : (
-          <button type="button">
-            <SunFilledIcon size={22} />
-          </button>
+          <SunFilledIcon size={22} />
         )}
       </div>
     </Component>
