@@ -5,9 +5,10 @@ import { LinkIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import { Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
-import { fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
+import { analyzeYouTubeVideo, fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
 import { useNavigate } from "react-router-dom";
 import VideoInformations from "@/components/home/VideoInformations";
+import AiClips from "@/components/home/AiClips";
 import { analysisResult, videoInfo } from "@/types";
 
 export default function IndexPage() {
@@ -47,6 +48,7 @@ export default function IndexPage() {
                 navigate("/#video-informations", { replace: true });
 
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
+                //analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
             }, 3000);
         }
     };
@@ -119,8 +121,9 @@ export default function IndexPage() {
             </section>
 
         
-            <section id="video-informations" className={`snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
+            <section id="video-informations" className={`p-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
                 <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
+                <AiClips loading={gLoading} error={gError} clips={aiResult} thumbnail={videoInfo?.thumbnail}/>
             </section>
         </DefaultLayout>
     );

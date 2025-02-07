@@ -50,7 +50,7 @@ export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading:
 };
 
 
-async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setResult: (result: analysisResult) => void) {
+export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setResult: (result: analysisResult[]) => void) {
     const prompt = `Analyze the YouTube video "${ytLink}" and identify the key moments. Extract timestamps (start and duration in seconds) with a maximum duration of 1 minute and 20 seconds per moment.
     Extract at least 3 and at most 6 key moments, depending on the length of the video.
     Each moment should have a descriptive and engaging title that accurately summarizes its content. 
@@ -84,7 +84,7 @@ async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: boolean
     try {
         const result = await geminiModel.generateContent(prompt);
         const response = await result.response;
-        const jsonResult = JSON.parse(response.text()) as analysisResult;
+        const jsonResult = JSON.parse(response.text()) as analysisResult[];
         setResult(jsonResult);
         console.log(jsonResult);
     } catch (error: any) {

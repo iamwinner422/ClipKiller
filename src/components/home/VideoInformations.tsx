@@ -13,7 +13,7 @@ interface Props {
 }
 export default function VideoInformations({ loading, error, videoInfo }: Props) {
     return (
-        <div className="p-8">
+        <div>
 
             <div className="flex flex-col gap-3">
                 <Card className="w-full h-full size-full py-8 px-6" radius="lg">
