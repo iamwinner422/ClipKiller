@@ -7,16 +7,20 @@ import { Clock } from "lucide-react";
 
 
 
+
 interface Props {
     loading: boolean;
     error: string | undefined;
     clips: analysisResult[];
     thumbnail?: string | undefined;
+    retryFunction: () => Promise<void>
 }
 
 
 
-export default function AiClips({ loading, error, clips, thumbnail }: Props) {
+export default function AiClips({ loading, error, clips, thumbnail, retryFunction }: Props) {
+    
+    
     return (
         <div className="px-5">
             {loading && (
@@ -34,7 +38,7 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
             {(!loading && clips.length === 0 && !error) && (
                 <div className="my-12 flex flex-col gap-y-6 items-center justify-center">
                     <p>Humm... Cannot find any suitable clip for the moment! Please retry.</p>
-                    <Button variant="ghost" color="secondary" radius="full" className="w-24">
+                    <Button onPress={retryFunction} variant="ghost" color="secondary" radius="full" className="w-24">
                         Retry
                     </Button>
                 </div>
@@ -72,7 +76,7 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
             {!loading && error && (
                 <div className="my-12 flex flex-col gap-y-3 items-center justify-center">
                     <p className="text-red-500">{error}</p>
-                    <Button variant="ghost" color="secondary" radius="full" className="w-24">
+                    <Button onPress={retryFunction} variant="ghost" color="secondary" radius="full" className="w-24">
                         Retry
                     </Button>
                 </div>

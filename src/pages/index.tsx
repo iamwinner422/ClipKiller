@@ -129,7 +129,10 @@ export default function IndexPage() {
             <section id="video-informations" className={`px-8 pt-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
                 <Card radius="lg">
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
-                    <AiClips loading={gLoading} error={gError} clips={aiResult} thumbnail={videoInfo?.thumbnail}/>
+                    <AiClips loading={gLoading} error={gError} clips={aiResult} 
+                        thumbnail={videoInfo?.thumbnail}
+                        retryFunction={() => analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult)}
+                    />
                 </Card>
             </section>
         </DefaultLayout>
