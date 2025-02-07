@@ -15,10 +15,12 @@ export default function IndexPage() {
     const [error, setError] = useState<string | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
+    const [gLoading, setGLoading] = useState<boolean>(false);
+    const [gError, setGError] = useState<string | undefined>(undefined);
     const navigate = useNavigate();
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
 
-    // Lorsqu'on affiche les informations vidéo, on effectue le scroll
+    // Scroll to video informations
     useEffect(() => {
         if (showVideoInfo) {
             const element = document.getElementById("video-informations");

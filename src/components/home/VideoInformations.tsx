@@ -54,6 +54,11 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
                             </div>
                         </div>
                     )}
+                    {!loading && error && (
+                        <div className="flex items-center justify-center">
+                            <p className="text-red-500">{error}</p>
+                        </div>
+                    )}
                 </Card>
             </div>
         </div>
