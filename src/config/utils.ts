@@ -31,7 +31,7 @@ export function parseVideoDuration(duration: string): string {
 export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setVideoInfo: (videoInfo: videoInfo) => void) => {
     try {
         const response = await fetch(
-            `${API_HOST}/video-info?/videoURL=${ytLink}`
+            `${API_HOST}/video-info?videoURL=${ytLink}`
         );
         const data: videoInfo = await response.json();
         setVideoInfo(data);

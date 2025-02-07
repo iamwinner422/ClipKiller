@@ -29,6 +29,7 @@ export default function IndexPage() {
     }, [showVideoInfo]);
 
     const handleGenerate = () => {
+        setShowVideoInfo(false);
         if (ytLink === "") {
             setError("Please provide a link to the Youtube video.");
             setTimeout(() => setError(undefined), 5000);
@@ -116,7 +117,7 @@ export default function IndexPage() {
 
         
             <section id="video-informations" className={`snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
-                <VideoInformations loading={loading} error={error} />
+                <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
             </section>
         </DefaultLayout>
     );
