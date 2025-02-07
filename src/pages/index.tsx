@@ -16,7 +16,7 @@ export default function IndexPage() {
     const [error, setError] = useState<string | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
-    const [gLoading, setGLoading] = useState<boolean>(false);
+    const [gLoading, setGLoading] = useState<boolean>(true);
     const [gError, setGError] = useState<string | undefined>(undefined);
     const [aiResult, setAIResult] = useState<analysisResult[]>([]);
     const navigate = useNavigate();
@@ -46,11 +46,9 @@ export default function IndexPage() {
                 setShowVideoInfo(true);
                 //setLoading(false);
                 navigate("/#video-informations", { replace: true });
-
+                setGLoading(true);
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
-                setTimeout(()=>{ 
-                    analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
-                }, 5000)
+                analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
             }, 3000);
         }
     };

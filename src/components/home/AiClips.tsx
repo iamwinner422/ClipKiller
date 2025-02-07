@@ -20,7 +20,7 @@ export default function AiClips({loading, error, clips, thumbnail}: Props) {
   return (
     <div className="mt-16 flex flex-col justify-center items-center">
         {loading && (
-            <>
+            <div className="flex flex-col items-center">
                 <p>Processing, Finding best clips for you...</p>
                 <Progress
                     isIndeterminate
@@ -29,12 +29,12 @@ export default function AiClips({loading, error, clips, thumbnail}: Props) {
                     className="mt-2 w-1/2"
                     size="sm"
                 />   
-            </>            
+            </div>            
         )}
-        {(!loading && clips.length > 0) ? (
-            <div className="flex flex-col gap-y-3">
+        {(!loading && clips.length ===  0) ? (
+            <div className="flex flex-col gap-y-6 items-center">
                 <p>Humm... Cannot find any suitable clip for the moment! Please retry.</p>
-                <Button variant="ghost" color="secondary" radius="full">
+                <Button variant="ghost" color="secondary" radius="full" className="w-24">
                     Retry
                 </Button>
             </div>
