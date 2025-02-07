@@ -7,27 +7,44 @@ import DefaultLayout from "@/layouts/default";
 import { Sparkles } from 'lucide-react';
 import { useState } from "react";
 import { ytLinkRegex } from "@/config/utils";
+import { useNavigate } from "react-router-dom";
+import VideoInformations from "@/components/home/VideoInformations";
 
 export default function IndexPage() {
     const [ytLink, setYtLink] = useState<string>("");
     const [error, setError] = useState<string | undefined>(undefined);
     const [laoding, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
 
     const handleGenerate = () => {
         if(ytLink === ""){
             setError("Please provide a link to the Youtube video.");
             setTimeout(() => setError(undefined), 5000);
-        }else if(ytLinkRegex.test(ytLink) === false){
+            return;
+        }
+        if(ytLinkRegex.test(ytLink) === false){
             setError("Please provide a valid link to the Youtube video.");
             setTimeout(() => setError(undefined), 5000);
-        }else{
-            setLoading(true);
+            return;
         }
+        
+        setLoading(true);
+            setTimeout(() => {
+            //setLoading(false);
+            navigate("/#video-informations", { replace: true });
+
+                // Scroll vers l'élément avec l'id "video-informations"
+            const element = document.getElementById("video-informations");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 3000);
+        
     }
     return (
         <DefaultLayout>
-            <section id="#" className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+            <section id="home" className="h-fit flex flex-col items-center justify-center gap-4 py-8 md:py-10">
                 <div className="inline-block max-w-lg text-center justify-center">
                     <span className={title({ color: "violet", size: 'lg' })}>Auto Clip&nbsp;</span>
                     <br />
@@ -65,6 +82,9 @@ export default function IndexPage() {
                     )}
                 </div>
             </section>
+            {(
+                <VideoInformations/>
+            )}
         </DefaultLayout>
     );
 }
