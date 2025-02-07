@@ -53,12 +53,12 @@ export default function IndexPage() {
         }
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (videoInfo) {
             setGLoading(true);
             analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult);
         }
-    }, [videoInfo]);
+    }, [videoInfo]); */
 
     return (
         <DefaultLayout>
