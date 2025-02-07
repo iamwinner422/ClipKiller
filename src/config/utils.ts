@@ -78,7 +78,7 @@ export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: 
         topP: 0.95,
         topK: 40,
         maxOutputTokens: 8192,
-        responseMimeType: "text/json",
+        responseMimeType: "application/json",
       };
 
     try {

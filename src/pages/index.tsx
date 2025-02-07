@@ -19,18 +19,7 @@ export default function IndexPage() {
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const [gLoading, setGLoading] = useState<boolean>(true);
     const [gError, setGError] = useState<string | undefined>(undefined);
-    const [aiResult, setAIResult] = useState<analysisResult[]>([
-        {
-            start: "0.34",
-            duration: 75,
-            title: "Le secret d'une pâte à pizza parfaite révélé !"
-        },
-        {
-            start: "1.00",
-            duration: 43, // in seconds
-            title: "Les étapes clés pour une pâte maison réussie"
-        }
-    ]);
+    const [aiResult, setAIResult] = useState<analysisResult[]>([]);
     const navigate = useNavigate();
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
 

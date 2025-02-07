@@ -20,19 +20,19 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
     return (
         <div className="px-5">
             {loading && (
-                <div className="mt-12 flex flex-col items-center justify-center">
+                <div className="my-12 flex flex-col items-center justify-center">
                     <p>Processing, Finding best clips for you...</p>
                     <Progress
                         isIndeterminate
                         aria-label="Loading..."
                         color="secondary"
-                        className="mt-2 w-1/2"
+                        className="mt-2 w-1/4"
                         size="sm"
                     />
                 </div>
             )}
-            {(!loading && clips.length === 0) && (
-                <div className="mt-12 flex flex-col gap-y-6 items-center justify-center">
+            {(!loading && clips.length === 0 && !error) && (
+                <div className="my-12 flex flex-col gap-y-6 items-center justify-center">
                     <p>Humm... Cannot find any suitable clip for the moment! Please retry.</p>
                     <Button variant="ghost" color="secondary" radius="full" className="w-24">
                         Retry
@@ -70,8 +70,11 @@ export default function AiClips({ loading, error, clips, thumbnail }: Props) {
                 </div>
             )}
             {!loading && error && (
-                <div className="flex items-center justify-center">
+                <div className="my-12 flex flex-col gap-y-3 items-center justify-center">
                     <p className="text-red-500">{error}</p>
+                    <Button variant="ghost" color="secondary" radius="full" className="w-24">
+                        Retry
+                    </Button>
                 </div>
             )}
         </div>
