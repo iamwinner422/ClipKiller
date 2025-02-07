@@ -16,7 +16,7 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
         <div>
 
             <div className="flex flex-col gap-3">
-                <div className="w-full h-full size-full py-8 px-6">
+                <div className="w-full h-full size-full md:py-8 md:px-6">
                     {loading && (
                         <div className=" w-full flex items-start gap-4">
                             <div>
@@ -31,12 +31,12 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
                     )}
                     {!loading && videoInfo && (
                         <div className=" w-full flex items-start gap-4">
-                            <Card isFooterBlurred={true} isBlurred={true} className="min-w-[400px]">
+                            <Card isFooterBlurred={true} isBlurred={true} className="min-w-full md:min-w-[400px]">
                                 <Image isBlurred={true}
                                     alt={videoInfo.title}
                                     src={videoInfo.thumbnail}
                                     height={250}
-                                    width={400} 
+                                    width="100%" 
                                 />
                                 <CardFooter className="absolute bg-background/30 bottom-0 border-t-1 border-zinc-100/20 z-10 justify-between">
                                     <div className="flex items-center gap-x-1">
