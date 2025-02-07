@@ -64,7 +64,7 @@ export default function IndexPage() {
         <DefaultLayout>
 
             <section id="home"
-                className="snap-start flex flex-col items-center justify-center gap-4 py-8 md:pt-16 md:pb-72"
+                className="snap-start flex flex-col items-center justify-center gap-4 py-8 pb-56 md:pt-16 md:pb-72"
             >
                 <div className="inline-block max-w-lg text-center">
                     <span className={title({ color: "violet", size: "lg" })}>
@@ -126,7 +126,7 @@ export default function IndexPage() {
             </section>
 
         
-            <section id="video-informations" className={`px-8 pt-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
+            <section id="video-informations" className={`md:px-8 pt-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
                 <Card radius="lg">
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}/>
                     <AiClips loading={gLoading} error={gError} clips={aiResult} 
