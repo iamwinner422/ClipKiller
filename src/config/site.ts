@@ -9,8 +9,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Manual Clip",
-      href: "/docs",
+      label: "Clip Me",
+      href: "/clip-me",
     },
     
   ],
