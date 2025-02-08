@@ -9,7 +9,8 @@ import {Clock, Youtube}from "lucide-react";
 interface Props {
     loading: boolean;
     error: string | undefined;
-    videoInfo: videoInfo | undefined
+    videoInfo: videoInfo | undefined;
+    manualClip?: boolean
 }
 export default function VideoInformations({ loading, error, videoInfo }: Props) {
     return (
