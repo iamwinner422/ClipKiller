@@ -1,8 +1,5 @@
 
-import { Image } from "@heroui/image";
-import { Card, CardFooter } from "@heroui/card";
 import { videoInfo } from "@/types";
-import {Clock, Youtube}from "lucide-react";
 import { Button } from "@heroui/button";
 import VideoInfoSkeleton from "@/components/VideoInfoSkeleton";
 import VideoInfoCard from "@/components/VideoInfoCard";
