@@ -38,6 +38,14 @@ export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading:
         const response = await fetch(
             `${API_HOST}/video-info?videoURL=${ytLink}`
         );
+
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('Video not found (404)');
+            } else {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        }
         const data: videoInfo = await response.json();
         setVideoInfo(data);
 
