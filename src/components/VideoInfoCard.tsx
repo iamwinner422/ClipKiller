@@ -2,14 +2,17 @@ import { Card, CardFooter } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { Clock, Youtube } from "lucide-react";
 import { videoInfo } from "@/types";
+import { Input } from "@heroui/input";
+import { Button } from "@heroui/button";
 
 interface Props {
     videoInfo?: videoInfo | undefined;
+    manualClip?: boolean
 }
 
-export default function VideoInfoCard({ videoInfo }: Props) {
+export default function VideoInfoCard({ videoInfo, manualClip }: Props) {
     return (
-        <div className=" w-full flex items-start gap-4">
+        <div className=" w-full flex items-start gap-4 relative">
             <Card isFooterBlurred={true} isBlurred={true} className="min-w-full md:min-w-[400px]">
                 <Image isBlurred={true}
                     alt={videoInfo?.title}
@@ -30,6 +33,15 @@ export default function VideoInfoCard({ videoInfo }: Props) {
             </Card>
             <div className="w-full flex flex-col gap-3">
                 <p className="uppercase font-bold text-2xl">{videoInfo?.title}</p>
+                {manualClip && (
+                    <div className="mt-6 flex gap-x-6 absolute bottom-0">
+                        <div className="flex items-center gap-x-3">
+                            <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-32 rounded-md" />
+                            <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-32 rounded-md" />
+                        </div>
+                        <Button className="w-40" size="lg" color="primary">Download</Button>
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -113,7 +113,7 @@ export default function ClipMe() {
             <section id="video-informations" className={`md:px-8 pt-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
                 <Card radius="lg">
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
-                        retryFunction={()=>handleClip()}
+                        retryFunction={()=>handleClip()} manualClip={true}
                     />
                     
                 </Card>
