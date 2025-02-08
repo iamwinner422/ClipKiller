@@ -20,8 +20,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Manual Clip",
-      href: "/dashboard",
+      label: "Clip Me",
+      href: "/clip-me",
     },
   ],
   links: {
