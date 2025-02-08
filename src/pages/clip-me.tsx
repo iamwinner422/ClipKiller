@@ -33,12 +33,22 @@ export default function ClipMe() {
             setLoading(true);
             setTimeout(() => {
                 setShowVideoInfo(true);
-                navigate("/#video-informations", { replace: true });
+                navigate("/clip-me#video-informations", { replace: true });
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
                 
             }, 3000);
         }
     }
+
+    // Scroll to video informations
+    useEffect(() => {
+        if (showVideoInfo) {
+            const element = document.getElementById("video-informations");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [showVideoInfo]);
 
     return (
         <DefaultLayout>
