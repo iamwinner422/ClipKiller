@@ -36,14 +36,14 @@ export function parseVideoDuration(duration: string): string {
 export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setVideoInfo: (videoInfo: videoInfo) => void) => {
     try {
         const response = await fetch(
-            `${API_HOST}/video-info?videoURL=${ytLink}`
+            `${API_HOST}/info?ytLink=${ytLink}`
         );
 
         if (!response.ok) {
             if (response.status === 404) {
                 throw new Error('Video not found (404)');
             } else {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`Oops! Something went wrong (${response.status})`);
             }
         }
         const data: videoInfo = await response.json();

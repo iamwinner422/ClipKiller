@@ -3,16 +3,17 @@ import { Image } from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
 import { Card, CardFooter } from "@heroui/card";
 import { videoInfo } from "@/types";
-import { parseVideoDuration } from "@/config/utils";
 import {Clock, Youtube}from "lucide-react";
+import { Button } from "@heroui/button";
 
 interface Props {
     loading: boolean;
     error: string | undefined;
     videoInfo: videoInfo | undefined;
-    manualClip?: boolean
+    manualClip?: boolean;
+    retryFunction: () => void;
 }
-export default function VideoInformations({ loading, error, videoInfo }: Props) {
+export default function VideoInformations({ loading, error, videoInfo, manualClip, retryFunction }: Props) {
     return (
         <div>
 
@@ -56,9 +57,12 @@ export default function VideoInformations({ loading, error, videoInfo }: Props) 
                         </div>
                     )}
                     {!loading && error && error.length > 0 && (
-                        <div className="flex items-center justify-center">
-                            <p className="text-red-500">{error}</p>
-                        </div>
+                        <div className="my-12 flex flex-col gap-y-3 items-center justify-center">
+                        <p className="text-red-500">{error}</p>
+                        <Button onPress={retryFunction} variant="ghost" color={manualClip ? "primary" : "secondary"} radius="full" className="w-24">
+                            Retry
+                        </Button>
+                    </div>
                     )}
                 </div>
             </div>
