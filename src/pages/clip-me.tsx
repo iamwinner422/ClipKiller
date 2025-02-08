@@ -21,8 +21,8 @@ export default function ClipMe() {
                     <div className={subtitle({ class: "mt-4" })}>
                         Clip any Youtube video by giving the start time and the duration
                     </div>
-
-                    <div className="mt-8">
+                </div>
+                <div className="mt-8">
                         <div className="flex flex-wrap gap-x-3 items-center justify-center gap-y-2">
                             <div className="w-full sm:w-[25rem]">
                                 <Input
@@ -48,7 +48,6 @@ export default function ClipMe() {
                                 Clip
                             <Sparkles size={18} className="font-semibold" />
                         </button>
-                        </div>
                     </div>
                 </div>
             </section>
