@@ -98,7 +98,7 @@ export default function IndexPage() {
                             type="button"
                             disabled={loading}
                             onClick={handleGenerate}
-                            className="w-full sm:w-auto flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] hover:bg-[#b249f8]/90 font-medium text-white py-3 rounded-full"
+                            className="md:w-32 w-full flex gap-x-2 items-center justify-center px-4 shadow bg-[#b249f8] hover:bg-[#b249f8]/90 font-medium text-white py-3 rounded-full"
                         >
                             Generate
                             <Sparkles size={18} className="font-semibold" />

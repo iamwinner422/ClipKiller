@@ -43,7 +43,7 @@ export default function ClipMe() {
                             <button
                                 type="button"
                                 disabled={loading}
-                                className="w-full sm:w-auto flex gap-x-2 items-center justify-center px-4 shadow bg-primary hover:bg-primary/90 font-medium text-white py-3 rounded-full"
+                                className="md:w-32 w-full flex gap-x-2 items-center justify-center px-4 shadow bg-primary hover:bg-primary/90 font-medium text-white py-3 rounded-full"
                             >
                                 Clip
                             <Sparkles size={18} className="font-semibold" />
