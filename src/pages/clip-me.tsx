@@ -13,9 +13,9 @@ import { videoInfo } from "@/types";
 
 export default function ClipMe() {
     const [ytLink, setYtLink] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>(undefined);
-    const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
+    const [showVideoInfo, setShowVideoInfo] = useState<boolean>(true);
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
     const navigate = useNavigate();
 
