@@ -25,7 +25,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/iamwinner422",
+    github: "https://github.com/iamwinner422/",
     web: "https://iamwinner422.vercel.app",
   },
 };

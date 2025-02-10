@@ -34,13 +34,17 @@ export default function VideoInfoCard({ videoInfo, manualClip }: Props) {
             <div className="overflow-x-auto w-full flex flex-col gap-3 px-3 ">
                 <p className="uppercase font-bold md:text-2xl text-xl truncate text-wrap">{videoInfo?.title}</p>
                 {manualClip && (
-                    <div className="mt-6 mb-6 md:mb-0 w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3 lg:absolute lg:bottom-0">
-                        <div className="flex items-center gap-x-3">
-                            <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 sm:w-32 rounded-md" />
-                            <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 sm:w-32 rounded-md" />
-                        </div>
-                        <div className="w-full">
-                            <Button className="w-full " size="lg" color="primary">Download</Button>
+                    <div className="mt-6 mb-6 md:mb-0 lg:absolute lg:bottom-0 flex flex-col gap-y-2">
+                        <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
+                        <div className="w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3">
+                            <div className="flex items-center gap-x-3">
+                                <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 sm:w-32 rounded-md" />
+                                <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 sm:w-32 rounded-md" />
+                            </div>
+                            <div className="w-full">
+                                <Button className="w-full md:w-auto " size="lg" color="primary">Download</Button>
+                            </div>
+                            
                         </div>
                     </div>
                 )}

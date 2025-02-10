@@ -10,7 +10,7 @@ const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
 
 export const ytLinkRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-
+export const numericRegex = /^[0-9]+$/;
 export function parseVideoDuration(duration: string): string {
     const parts = duration.split(":").map(Number);
 
