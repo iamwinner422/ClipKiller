@@ -127,13 +127,13 @@ export default function ClipMe() {
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
                         retryFunction={() => handleClip()} manualClip={false}
                     />
-                    <div className="absolute bottom-0 right-8 pb-8">
+                    <div className="lg:absolute lg:bottom-0 lg:right-8 pb-4 lg:pb-8 px-4">
                         <div className="mt-6 mb-6 md:mb-0 flex flex-col gap-y-2">
                             <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
                             <div className="w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3">
-                                <div className="flex items-center gap-x-3">
-                                    <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 sm:w-32 rounded-md" />
-                                    <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 sm:w-32 rounded-md" />
+                                <div className="flex items-center w-full justify-between gap-x-3">
+                                    <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 md:w-32 rounded-md" />
+                                    <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 md:w-32 rounded-md" />
                                 </div>
                                 <div className="w-full">
                                     <Button className="w-full md:w-auto" onPress={handleDownload} size="lg" color="primary">Download</Button>

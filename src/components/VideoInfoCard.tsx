@@ -32,7 +32,7 @@ export default function VideoInfoCard({ videoInfo, manualClip }: Props) {
                 </CardFooter>
             </Card>
             <div className="overflow-x-auto w-full flex flex-col gap-3 px-3 ">
-                <p className="uppercase font-bold md:text-2xl text-xl truncate text-wrap">{videoInfo?.title}</p>
+                <p className="uppercase font-bold lg:text-2xl text-xl truncate text-wrap">{videoInfo?.title}</p>
                 {manualClip && (
                     <div className="mt-6 mb-6 md:mb-0 lg:absolute lg:bottom-0 flex flex-col gap-y-2">
                         <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
