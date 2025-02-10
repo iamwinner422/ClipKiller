@@ -128,10 +128,12 @@ export default function ClipMe() {
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
                         retryFunction={() => handleClip()} manualClip={false}
                     />
-                    <ClipMeBox handleDownload={handleDownload} startTime={startTime}
-                        duration={duration} durationSeconds={videoInfo?.durationSeconds || 0}
-                        setStartTime={setStartTime} setDuration={setDuration}
-                    />
+                    {videoInfo && videoInfo.channel && (
+                        <ClipMeBox handleDownload={handleDownload} startTime={startTime}
+                            duration={duration} durationSeconds={videoInfo?.durationSeconds || 0}
+                            setStartTime={setStartTime} setDuration={setDuration}
+                        />
+                    )}
                 </Card>
             </section>
 
