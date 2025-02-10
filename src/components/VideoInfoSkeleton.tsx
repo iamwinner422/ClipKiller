@@ -7,7 +7,7 @@ export default function VideoInfoSkeleton({ manualClip }: Props) {
     return (
         <div className=" w-full flex items-start gap-4 relative">
             <div>
-                <Skeleton className="flex rounded-lg max-w-full w-[400px] h-[250px]" />
+                <Skeleton className="flex rounded-lg max-w-full w-[400px] h-[200px] md:h-[250px]" />
             </div>
             <div className="w-full flex flex-col gap-3">
                 <Skeleton className="h-4 w-3/5 rounded-lg" />
