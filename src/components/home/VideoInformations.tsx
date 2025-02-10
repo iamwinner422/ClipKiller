@@ -16,7 +16,7 @@ export default function VideoInformations({ loading, error, videoInfo, manualCli
         <div>
 
             <div className="flex flex-col gap-3">
-                <div className="w-full h-full size-full md:py-8 md:px-6">
+                <div className="w-full h-full size-full md:pt-6 md:pl-6 lg:pb-6">
                     {loading && (
                         <VideoInfoSkeleton manualClip={manualClip}/>
                     )}

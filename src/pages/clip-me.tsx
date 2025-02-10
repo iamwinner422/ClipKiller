@@ -132,11 +132,11 @@ export default function ClipMe() {
                             <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
                             <div className="w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3">
                                 <div className="flex items-center w-full justify-between gap-x-3">
-                                    <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 md:w-32 rounded-md" />
-                                    <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 md:w-32 rounded-md" />
+                                    <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 lg:w-32 rounded-md" />
+                                    <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 lg:w-32 rounded-md" />
                                 </div>
                                 <div className="w-full">
-                                    <Button className="w-full md:w-auto" onPress={handleDownload} size="lg" color="primary">Download</Button>
+                                    <Button className="w-full lg:w-auto" onPress={handleDownload} size="lg" color="primary">Download</Button>
                                 </div>
 
                             </div>
