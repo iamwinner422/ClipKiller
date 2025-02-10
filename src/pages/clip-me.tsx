@@ -1,8 +1,8 @@
 import DefaultLayout from "@/layouts/default";
 import { title, subtitle } from "@/components/primitives";
 import { useState, useEffect } from "react";
-import { Progress } from "@heroui/progress";
 import { Input } from "@heroui/input";
+import LoadingSection from "@/components/LoadingSection";
 import { LinkIcon } from "@/components/icons";
 import { Scissors } from "lucide-react";
 import { fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
@@ -96,16 +96,7 @@ export default function ClipMe() {
                     )}
 
                     {loading && (
-                        <div className="mt-16 flex flex-col justify-center items-center">
-                            <p>Processing your video, please wait...</p>
-                            <Progress
-                                isIndeterminate
-                                aria-label="Loading..."
-                                color="primary"
-                                className="mt-2 w-1/2"
-                                size="sm"
-                            />
-                        </div>
+                        <LoadingSection manualClip={true}/>
                     )}
                 </div>
             </section>

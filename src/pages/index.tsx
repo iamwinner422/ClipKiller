@@ -1,6 +1,6 @@
 import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
-import { Progress } from "@heroui/progress";
+import LoadingSection from "@/components/LoadingSection";
 import { title, subtitle } from "@/components/primitives";
 import { LinkIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
@@ -111,16 +111,7 @@ export default function IndexPage() {
                     )}
 
                     {loading && (
-                        <div className="mt-16 flex flex-col justify-center items-center">
-                            <p>Processing your video, please wait...</p>
-                            <Progress
-                                isIndeterminate
-                                aria-label="Loading..."
-                                color="secondary"
-                                className="mt-2 w-1/2"
-                                size="sm"
-                            />
-                        </div>
+                        <LoadingSection/>
                     )}
                 </div>
             </section>
