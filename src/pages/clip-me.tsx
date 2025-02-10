@@ -5,10 +5,11 @@ import { Input } from "@heroui/input";
 import LoadingSection from "@/components/LoadingSection";
 import { LinkIcon } from "@/components/icons";
 import { Scissors } from "lucide-react";
-import { fetchYTVideoMetadata, ytLinkRegex } from "@/config/utils";
+import { fetchYTVideoMetadata, numericRegex, ytLinkRegex } from "@/config/utils";
 import { useNavigate } from "react-router-dom";
 import VideoInformations from "@/components/home/VideoInformations";
 import { Card } from "@heroui/card";
+import { Button } from "@heroui/button";
 import { videoInfo } from "@/types";
 
 export default function ClipMe() {
@@ -17,6 +18,9 @@ export default function ClipMe() {
     const [error, setError] = useState<string | undefined>(undefined);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
+    const [startTime, setStartTime] = useState<number>(0);
+    const [duration, setDuration] = useState<number>(0);
+    const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
     const navigate = useNavigate();
 
 
@@ -29,16 +33,33 @@ export default function ClipMe() {
         } else if (!ytLinkRegex.test(ytLink)) {
             setError("Please provide a valid link to the Youtube video.");
             setTimeout(() => setError(undefined), 5000);
-        }else{
+        } else {
             setLoading(true);
             setTimeout(() => {
                 setShowVideoInfo(true);
                 navigate("/clip-me#video-informations", { replace: true });
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
-                
+
             }, 3000);
         }
     }
+
+
+    const handleDownload = () => {
+        if (videoInfo && videoInfo.channel) {
+            if ((startTime !== 0 && duration !== 0) || (!numericRegex.test(startTime.toString()) || !numericRegex.test(duration.toString()))) {
+                setError("Please provide a valid start time and duration.");
+                setTimeout(() => setError(undefined), 5000);
+            } else if (startTime < videoInfo.durationSeconds || (startTime + duration) > videoInfo.durationSeconds) {
+                setError("Please provide a valid start time and duration.");
+                setTimeout(() => setError(undefined), 5000);
+            } else {
+                setIsDownloaded(true);
+
+            }
+        }
+    }
+
 
     // Scroll to video informations
     useEffect(() => {
@@ -96,17 +117,32 @@ export default function ClipMe() {
                     )}
 
                     {loading && (
-                        <LoadingSection manualClip={true}/>
+                        <LoadingSection manualClip={true} />
                     )}
                 </div>
             </section>
 
             <section id="video-informations" className={`md:px-8 pt-8 snap-start h-screen w-full ${showVideoInfo ? "" : "hidden"}`}>
-                <Card radius="lg">
+                <Card radius="lg" className="relative">
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
-                        retryFunction={()=>handleClip()} manualClip={true}
+                        retryFunction={() => handleClip()} manualClip={false}
                     />
-                    
+                    <div className="absolute bottom-0 right-8 pb-8">
+                        <div className="mt-6 mb-6 md:mb-0 flex flex-col gap-y-2">
+                            <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
+                            <div className="w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3">
+                                <div className="flex items-center gap-x-3">
+                                    <Input type="number" id="start-time" size="lg" placeholder="Start Time" className="h-12 w-1/2 sm:w-32 rounded-md" />
+                                    <Input type="number" id="duration" size="lg" placeholder="Duration" className="h-12 w-1/2 sm:w-32 rounded-md" />
+                                </div>
+                                <div className="w-full">
+                                    <Button className="w-full md:w-auto" onPress={handleDownload} size="lg" color="primary">Download</Button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </Card>
             </section>
 

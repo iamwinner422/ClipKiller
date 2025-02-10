@@ -8,6 +8,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export type videoInfo = {
     title: string;
     duration: string;
+    durationSeconds: number;
     thumbnail: string;
     channel: string;
 }
