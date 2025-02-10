@@ -21,7 +21,7 @@ export default function VideoInformations({ loading, error, videoInfo, manualCli
                         <VideoInfoSkeleton manualClip={manualClip}/>
                     )}
                     {!loading && Object.keys(videoInfo?.channel ?? {}).length > 0 && (
-                        <VideoInfoCard videoInfo={videoInfo} manualClip={manualClip}/>
+                        <VideoInfoCard videoInfo={videoInfo}/>
                     )}
                     {!loading && error && error.length > 0 && (
                         <div className="my-12 flex flex-col gap-y-3 items-center justify-center">
