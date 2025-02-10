@@ -19,8 +19,8 @@ export default function ClipMe() {
     const [error, setError] = useState<string | undefined>(undefined);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
-    const [startTime, setStartTime] = useState<number>(0);
-    const [duration, setDuration] = useState<number>(0);
+    const [startTime, setStartTime] = useState<string>("");
+    const [duration, setDuration] = useState<string>("");
     const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
     const navigate = useNavigate();
 
@@ -48,10 +48,10 @@ export default function ClipMe() {
 
     const handleDownload = () => {
         if (videoInfo && videoInfo.channel) {
-            if ((startTime !== 0 && duration !== 0) || (!numericRegex.test(startTime.toString()) || !numericRegex.test(duration.toString()))) {
+            if ((startTime === "" && duration === "") || (!numericRegex.test(startTime.toString()) || !numericRegex.test(duration.toString()))) {
                 setError("Please provide a valid start time and duration.");
                 setTimeout(() => setError(undefined), 5000);
-            } else if (startTime < videoInfo.durationSeconds || (startTime + duration) > videoInfo.durationSeconds) {
+            } else if (parseInt(startTime) < videoInfo.durationSeconds || (parseInt(startTime) + parseInt(duration)) > videoInfo.durationSeconds) {
                 setError("Please provide a valid start time and duration.");
                 setTimeout(() => setError(undefined), 5000);
             } else {
@@ -128,7 +128,10 @@ export default function ClipMe() {
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
                         retryFunction={() => handleClip()} manualClip={false}
                     />
-                    <ClipMeBox handleDownload={handleDownload}/>
+                    <ClipMeBox handleDownload={handleDownload} startTime={startTime}
+                        duration={duration} durationSeconds={videoInfo?.durationSeconds || 0}
+                        setStartTime={setStartTime} setDuration={setDuration}
+                    />
                 </Card>
             </section>
 
