@@ -62,6 +62,7 @@ export const downloadClip = async (ytLink: string, startTime: number, duration: 
         const response:any = await fetch(
             `${API_HOST}/download-clip?ytLink=${ytLink}&start=${startTime}&duration=${duration}`
         );
+        console.log(response)
         if (!response.ok) {
             if (response.status === 404) {
                 throw new Error('Video not found (404)');
@@ -69,10 +70,21 @@ export const downloadClip = async (ytLink: string, startTime: number, duration: 
                 throw new Error(`Oops! Something went wrong (${response.status})`);
             }
         }
-        if (response.data.success) {
-            setIsDownloaded(true);
-        }
-        setIsDownloaded(false);
+        // Create a blob from the response
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element and trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Clip-${startTime}_${Date.now()}.mp4`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        // Set the download status
+        setIsDownloaded(true);
+        
     } catch (error: any) {
         setError(error.message);
     } finally {

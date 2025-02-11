@@ -78,6 +78,18 @@ export default function ClipMe() {
         }
     }, [showVideoInfo]);
 
+    useEffect(() => {
+        if (isDownloaded) {
+            setDuration("");
+            setStartTime("");
+            setIsDownloaded(false);
+            const element = document.getElementById("home");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [isDownloaded]);
+
     return (
         <DefaultLayout>
             <section id="home" className="snap-start flex flex-col items-center justify-center gap-4 py-8 pb-56 md:pt-16 md:pb-72">
