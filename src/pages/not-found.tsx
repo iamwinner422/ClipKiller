@@ -1,4 +1,3 @@
-import { Logo } from "@/components/icons";
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import DefaultLayout from "@/layouts/default";
