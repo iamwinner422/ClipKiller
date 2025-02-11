@@ -38,10 +38,10 @@ export default function ClipMeBox({startTime, duration, error, isDownloaded, isD
                     </div>
                 </div>
                 {error && error.length > 0 && (
-                    <p className="text-red-500 text-sm">{error}</p>
+                    <p className="text-red-500 text-sm text-center">{error}</p>
                 )}
                 {isDownloaded && (
-                    <p className="text-green-500 text-sm">Clip downloaded successfully.</p>
+                    <p className="text-green-500 text-sm text-center">Clip downloaded successfully.</p>
                 )}
             </div>
         </div>

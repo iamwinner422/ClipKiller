@@ -21,7 +21,7 @@ export default function VideoInfoCard({ videoInfo }: Props) {
                 <CardFooter className="absolute bg-background/30 bottom-0 border-t-1 border-zinc-100/20 z-10 justify-between">
                     <div className="flex items-center gap-x-1">
                         <Youtube size={18} />
-                        <p className="text-sm font-bold overflow-hidden truncate w-11/12">{videoInfo?.channel}</p>
+                        <p className="text-sm font-bold overflow-hidden truncate w-9/12 md:w-11/12">{videoInfo?.channel}</p>
                     </div>
                     <div className="flex items-center gap-x-1">
                         <Clock size={18} />
