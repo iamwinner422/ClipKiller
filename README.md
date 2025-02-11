@@ -1,8 +1,7 @@
-# Vite & HeroUI Template
+# Clip Killer
 
-This is a template for creating applications using Vite and HeroUI (v2).
+Clip Killer: Easily create YouTube clips by providing the start time and duration.
 
-[Try it on CodeSandbox](https://githubbox.com/frontio-ai/vite-template)
 
 ## Technologies Used
 
@@ -14,16 +13,14 @@ This is a template for creating applications using Vite and HeroUI (v2).
 - [Framer Motion](https://www.framer.com/motion)
 
 ## How to Use
-
-To clone the project, run the following command:
+Firt you have to checkout on the [API](https://github.com/iamwinner422/yt-clip-downloader) to run the project locally.
+Then clone this project by runing the following command:
 
 ```bash
-git clone https://github.com/frontio-ai/vite-template.git
+git clone https://github.com/iamwinner422/ClipKiller.git
 ```
 
 ### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 
 ```bash
 npm install
@@ -34,17 +31,3 @@ npm install
 ```bash
 npm run dev
 ```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/frontio-ai/vite-template/blob/main/LICENSE).

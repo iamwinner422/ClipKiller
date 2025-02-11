@@ -17,7 +17,7 @@ export default function ClipMeBox({startTime, duration, error, isDownloaded, isD
     return (
         <div className="lg:absolute lg:bottom-0 lg:right-8 pb-4 lg:pb-8 px-4">
             <div className="mt-6 mb-6 md:mb-0 flex flex-col gap-y-2">
-                <small className="text-default-500 text-wrap">*Both of the Start Time and Duration should be in seconds</small>
+                <small className="text-default-500 text-wrap">*Both of Start Time and Duration should be in seconds</small>
                 <div className="w-full flex items-center justify-start flex-col sm:flex-row gap-x-6 gap-y-3">
                     <div className="flex items-center w-full justify-between gap-x-3">
                         <Input type="number" id="start-time" size="lg" disabled={isDownloading}
