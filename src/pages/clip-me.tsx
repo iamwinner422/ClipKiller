@@ -22,6 +22,7 @@ export default function ClipMe() {
     const [startTime, setStartTime] = useState<string>("");
     const [duration, setDuration] = useState<string>("");
     const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
+    const [isDownloading, setIsDownloading] = useState<boolean>(false);
     const navigate = useNavigate();
 
 
@@ -59,7 +60,8 @@ export default function ClipMe() {
                 setTimeout(() => setClipError(undefined), 5000);
             } else {
                 setClipError(undefined);
-                downloadClip(ytLink, parseInt(startTime), parseInt(duration), setLoading, setError, setIsDownloaded);
+                setIsDownloading(true);
+                downloadClip(ytLink, parseInt(startTime), parseInt(duration), setIsDownloading, setClipError, setIsDownloaded);
 
             }
         }
@@ -135,7 +137,7 @@ export default function ClipMe() {
                     {Object.keys(videoInfo?.thumbnail ?? {}).length > 0 && !loading && (
                         <ClipMeBox handleDownload={handleDownload} startTime={startTime}
                             duration={duration} setStartTime={setStartTime} isDownloaded={isDownloaded}
-                            setDuration={setDuration} error={clipError}
+                            setDuration={setDuration} error={clipError} isDownloading={isDownloading}
                         />
                     )}
                 </Card>
