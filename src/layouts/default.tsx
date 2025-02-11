@@ -1,12 +1,14 @@
 import { Navbar } from "@/components/navbar";
-export default function DefaultLayout({
-    children,
-}: {
+
+interface Props {
     children: React.ReactNode;
-}) {
+    showMenu?: boolean;
+}
+
+export default function DefaultLayout({children, showMenu}: Props) {
     return (
         <div className="relative flex flex-col h-screen">
-            <Navbar />
+            <Navbar showMenu={showMenu} />
             <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
                 {children}
             </main>

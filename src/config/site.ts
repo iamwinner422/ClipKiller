@@ -5,27 +5,26 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Auto Clip",
+      label: "Clip Me",
       href: "/",
     },
     {
-      label: "Clip Me",
-      href: "/clip-me",
+      label: "Auto Clip",
+      href: "#",
     },
     
   ],
   navMenuItems: [
     {
-      label: "Auto Clip",
+      label: "Clip Me",
       href: "/",
     },
     {
-      label: "Clip Me",
-      href: "/clip-me",
+      label: "Auto Clip",
+      href: "#",
     },
   ],
   links: {
-    github: "https://github.com/iamwinner422/",
-    web: "https://iamwinner422.vercel.app",
+    github: "https://github.com/iamwinner422/ClipKiller",
   },
 };

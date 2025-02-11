@@ -91,7 +91,7 @@ export default function ClipMe() {
     }, [isDownloaded]);
 
     return (
-        <DefaultLayout>
+        <DefaultLayout showMenu={true}>
             <section id="home" className="snap-start flex flex-col items-center justify-center gap-4 py-8 pb-56 md:pt-16 md:pb-72">
                 <div className="inline-block max-w-lg text-center">
                     <span className={title({ color: "blue", size: "lg" })}>

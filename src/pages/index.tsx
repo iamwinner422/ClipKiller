@@ -61,7 +61,7 @@ export default function IndexPage() {
     }, [videoInfo]); */
 
     return (
-        <DefaultLayout>
+        <DefaultLayout showMenu={true}>
 
             <section id="home"
                 className="snap-start flex flex-col items-center justify-center gap-4 py-8 pb-56 md:pt-16 md:pb-72"
@@ -122,10 +122,10 @@ export default function IndexPage() {
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
                         retryFunction={handleGenerate}
                     />
-                    {/* <AiClips loading={gLoading} error={gError} clips={aiResult} 
+                    <AiClips loading={gLoading} error={gError} clips={aiResult} 
                         thumbnail={videoInfo?.thumbnail}
                         retryFunction={() => analyzeYouTubeVideo(ytLink, setGLoading, setGError, setAIResult)}
-                    /> */}
+                    />
                 </Card>
             </section>
         </DefaultLayout>
