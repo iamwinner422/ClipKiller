@@ -35,7 +35,7 @@ export default function ClipMeBox({startTime, duration, durationSeconds, error, 
                     </div>
                 </div>
                 {error && error.length > 0 && (
-                    <p className="text-red-500">{error}</p>
+                    <p className="text-red-500 text-sm">{error}</p>
                 )}
             </div>
         </div>
