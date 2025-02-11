@@ -6,11 +6,10 @@ import LoadingSection from "@/components/LoadingSection";
 import ClipMeBox from "@/components/ClipMeBox";
 import { LinkIcon } from "@/components/icons";
 import { Scissors } from "lucide-react";
-import { fetchYTVideoMetadata, numericRegex, ytLinkRegex } from "@/config/utils";
+import { downloadClip, fetchYTVideoMetadata, numericRegex, ytLinkRegex } from "@/config/utils";
 import { useNavigate } from "react-router-dom";
 import VideoInformations from "@/components/home/VideoInformations";
 import { Card } from "@heroui/card";
-import { Button } from "@heroui/button";
 import { videoInfo } from "@/types";
 
 export default function ClipMe() {
@@ -59,7 +58,8 @@ export default function ClipMe() {
                 setClipError("The maximum duration is 90 seconds (1min30sec).");
                 setTimeout(() => setClipError(undefined), 5000);
             } else {
-                setIsDownloaded(true);
+                setClipError(undefined);
+                downloadClip(ytLink, parseInt(startTime), parseInt(duration), setLoading, setError, setIsDownloaded);
 
             }
         }
@@ -134,8 +134,8 @@ export default function ClipMe() {
                     />
                     {Object.keys(videoInfo?.thumbnail ?? {}).length > 0 && !loading && (
                         <ClipMeBox handleDownload={handleDownload} startTime={startTime}
-                            duration={duration} durationSeconds={videoInfo?.durationSeconds || 0}
-                            setStartTime={setStartTime} setDuration={setDuration} error={clipError}
+                            duration={duration} setStartTime={setStartTime} isDownloaded={isDownloaded}
+                            setDuration={setDuration} error={clipError}
                         />
                     )}
                 </Card>

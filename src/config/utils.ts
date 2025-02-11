@@ -57,6 +57,29 @@ export const fetchYTVideoMetadata = async (ytLink: string, setLoading: (loading:
 
 };
 
+export const downloadClip = async (ytLink: string, startTime: number, duration: number, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setIsDownloaded: (isDownloaded: boolean) => void) => {
+    try {
+        const response:any = await fetch(
+            `${API_HOST}/download-clip?ytLink=${ytLink}&start=${startTime}&duration=${duration}`
+        );
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('Video not found (404)');
+            } else {
+                throw new Error(`Oops! Something went wrong (${response.status})`);
+            }
+        }
+        if (response.data.success) {
+            setIsDownloaded(true);
+        }
+        setIsDownloaded(false);
+    } catch (error: any) {
+        setError(error.message);
+    } finally {
+        setLoading(false);
+    }
+}
+
 
 export async function analyzeYouTubeVideo(ytLink: string, setLoading: (loading: boolean) => void, setError: (error: string | undefined) => void, setResult: (result: analysisResult[]) => void) {
     const prompt = `Analyze the YouTube video "${ytLink}" and identify the key moments. Extract timestamps (start and duration in seconds) with a maximum duration of 1 minute and 20 seconds per moment.

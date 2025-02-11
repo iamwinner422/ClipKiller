@@ -3,8 +3,8 @@ import { Button } from "@heroui/button";
 
 interface Props { 
     startTime: string;
-    durationSeconds: number;
     duration: string;
+    isDownloaded: boolean;
     error: string | undefined
     handleDownload: () => void;
     setStartTime: (startTime: string) => void;
@@ -12,7 +12,7 @@ interface Props {
 
 }
 
-export default function ClipMeBox({startTime, duration, durationSeconds, error, setStartTime, setDuration, handleDownload}: Props) {
+export default function ClipMeBox({startTime, duration, error, setStartTime, setDuration, handleDownload}: Props) {
     return (
         <div className="lg:absolute lg:bottom-0 lg:right-8 pb-4 lg:pb-8 px-4">
             <div className="mt-6 mb-6 md:mb-0 flex flex-col gap-y-2">
