@@ -39,7 +39,7 @@ export default function ClipMe() {
             setLoading(true);
             setTimeout(() => {
                 setShowVideoInfo(true);
-                navigate("/clip-me#video-informations", { replace: true });
+                navigate("/#video-informations", { replace: true });
                 fetchYTVideoMetadata(ytLink, setLoading, setError, setVideoInfo);
 
             }, 3000);
