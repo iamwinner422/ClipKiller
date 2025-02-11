@@ -17,6 +17,7 @@ export default function ClipMe() {
     const [ytLink, setYtLink] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | undefined>(undefined);
+    const [clipError, setClipError] = useState<string | undefined>(undefined);
     const [showVideoInfo, setShowVideoInfo] = useState<boolean>(false);
     const [videoInfo, setVideoInfo] = useState<videoInfo | undefined>(undefined);
     const [startTime, setStartTime] = useState<string>("");
@@ -49,11 +50,14 @@ export default function ClipMe() {
     const handleDownload = () => {
         if (videoInfo && videoInfo.channel) {
             if ((startTime === "" && duration === "") || (!numericRegex.test(startTime.toString()) || !numericRegex.test(duration.toString()))) {
-                setError("Please provide a valid start time and duration.");
-                setTimeout(() => setError(undefined), 5000);
+                setClipError("Please provide a valid start time and duration.");
+                setTimeout(() => setClipError(undefined), 5000);
             } else if (parseInt(startTime) < videoInfo.durationSeconds || (parseInt(startTime) + parseInt(duration)) > videoInfo.durationSeconds) {
-                setError("Please provide a valid start time and duration.");
-                setTimeout(() => setError(undefined), 5000);
+                setClipError("Please provide a valid start time and duration.");
+                setTimeout(() => setClipError(undefined), 5000);
+            } else if(parseInt(duration) > 90){
+                setClipError("The maximum duration is 90 seconds (1min30sec).");
+                setTimeout(() => setClipError(undefined), 5000);
             } else {
                 setIsDownloaded(true);
 
@@ -128,10 +132,10 @@ export default function ClipMe() {
                     <VideoInformations loading={loading} error={error} videoInfo={videoInfo}
                         retryFunction={() => handleClip()} manualClip={false}
                     />
-                    {videoInfo && videoInfo.channel && (
+                    {Object.keys(videoInfo?.thumbnail ?? {}).length > 0 && !loading && (
                         <ClipMeBox handleDownload={handleDownload} startTime={startTime}
                             duration={duration} durationSeconds={videoInfo?.durationSeconds || 0}
-                            setStartTime={setStartTime} setDuration={setDuration}
+                            setStartTime={setStartTime} setDuration={setDuration} error={clipError}
                         />
                     )}
                 </Card>

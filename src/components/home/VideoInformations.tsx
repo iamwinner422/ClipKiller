@@ -26,7 +26,7 @@ export default function VideoInformations({ loading, error, videoInfo, manualCli
                     {!loading && error && error.length > 0 && (
                         <div className="my-12 flex flex-col gap-y-3 items-center justify-center">
                             <p className="text-red-500">{error}</p>
-                            <Button onPress={retryFunction} variant="ghost" color={manualClip ? "primary" : "secondary"} radius="full" className="w-24">
+                            <Button onPress={retryFunction} variant="ghost" color={manualClip ? "secondary" : "primary"} radius="full" className="w-24">
                                 Retry
                             </Button>
                         </div>
